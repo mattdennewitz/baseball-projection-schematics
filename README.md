@@ -5,6 +5,20 @@ in all shapes and sizes. This app allows users translate
 distribution-specific data (e.g., component names ("mPA", "DBL", "3B"),
 roles, names) to a normalized, uniform schema.
 
+## Installation
+
+This package is not yet in PyPI, so for now install via Pip:
+
+```shell
+$ pip install -e git@github.com:mattdennewitz/baseball-projection-schematics.git#egg=baseball-projection-schematics
+```
+
+or clone the repo and install with:
+
+```shell
+$ pip install /path/to/this/repo/
+```
+
 ## Schematics
 
 Translation is accomplished by defining a map (here called a schematic)
