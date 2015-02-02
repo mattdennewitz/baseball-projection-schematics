@@ -3,6 +3,7 @@
 """Generates a configurable projection schema
 """
 
+from __future__ import unicode_literals
 import os
 import sys
 
@@ -15,15 +16,14 @@ import schematics
 from jinja2 import FileSystemLoader, Environment, Template
 from jinja2.ext import with_
 
-from projnorm import settings
-from projnorm.models import ConfigSchematic
+from projnorm import settings, configreader
 
 
 @click.command()
-@click.option('-t', '--template', type=click.Path(exists=True), required=True,
-              help='Path to JSON schematic template')
-@click.option('-c', '--config', type=click.File('rb'), required=True,
-              help='Path to schematic configuration')
+@click.option('-t', '--template', type=click.Path(exists=True),
+              required=True, help='Path to JSON schematic template')
+@click.option('-c', '--config', 'config_fp', type=click.File('rb'),
+              required=True, help='Path to schematic configuration')
 @click.option('--sort-keys/--no-sort-keys', default=True,
               help='Sort JSON keys? (Recommended)')
 @click.option('-i', '--indent', type=click.INT, default=4,
@@ -33,16 +33,7 @@ def generate_schema(template, config, destination, sort_keys, indent):
     """Generates a schema from given template and configuration.
     """
 
-    try:
-        # load and validate config
-        config = ConfigSchematic(json.load(config))
-    except (schematics.exceptions.ModelValidationError,
-            schematics.exceptions.ModelConversionError) as exc:
-        click.echo(
-            'The given configuration has errors. Please check:\n  %s' % exc,
-            err=True
-        )
-        sys.exit(1)
+    config = configreader.read_from_file(config_fp)
 
     template_base = os.path.dirname(os.path.realpath(template))
     template_name = template.split(os.sep)[-1]

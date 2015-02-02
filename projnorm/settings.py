@@ -12,3 +12,8 @@ ID_SYSTEMS = (
     'yahoo',
     'nfbc',
 )
+
+COLUMNS = (
+    'name',
+    'age'
+)
