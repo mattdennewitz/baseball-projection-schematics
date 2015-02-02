@@ -21,7 +21,10 @@ from projnorm.models import ProjectionSchematic
 
 space_re = re.compile(r'\s\s+')
 
-clean_text = lambda v: space_re.sub(' ', v).strip()
+def clean_text(value):
+    if value:
+        return space_re.sub(' ', value).strip()
+    return value
 
 
 def clean_value(value, default=None):
@@ -123,7 +126,11 @@ def process_projections(schematic_fp, projection_type, input_fp,
     writer.writerow(columns)
 
     for line in projections:
-        writer.writerow([line[key] for key in columns])
+        writer.writerow([
+            clean_text(line[key])
+            for key
+            in columns
+        ])
 
 
 if __name__ == '__main__':

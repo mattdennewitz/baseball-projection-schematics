@@ -29,7 +29,7 @@ from projnorm import settings, configreader
 @click.option('-i', '--indent', type=click.INT, default=4,
               help='JSON output indentation level')
 @click.argument('destination', type=click.File('w'), required=True)
-def generate_schema(template, config, destination, sort_keys, indent):
+def generate_schema(template, config_fp, destination, sort_keys, indent):
     """Generates a schema from given template and configuration.
     """
 
