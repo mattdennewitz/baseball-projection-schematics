@@ -1,24 +1,70 @@
 # Projection Schematics
 
-One of the most frustrating part of annual baseball projections
-is the inconsistency across delivery formats. Spreadsheets come
-coded with different player ID systems, character encodings,
-and sets of components.
+Baseball projection spreadsheets come (Steamer, PECOTA, GURU, etc)
+in all shapes and sizes. This app allows users translate
+distribution-specific data (e.g., component names ("mPA", "DBL", "3B"),
+roles, names) to a normalized, uniform schema.
 
-This app allows users to generate schematics to map translations
-from native component names (e.g., "mPA" or "DBL") to
-whatever you'd like.
+## Schematics
+
+Translation is accomplished by defining a map (here called a schematic)
+between column names in a projection spreadsheet and a new, normalized schema.
+
+Check out an example schematic here:
+[PECOTA Schematic](https://github.com/mattdennewitz/projection-normalization/blob/develop/contrib/schematics/pecota-2015.json).
+
+## Configuration
+
+Before a schematic can be generated, the schematic needs to know
+which components it's on the hook for mapping. These components
+(and, implicitly, the order of their output when used in processing)
+are then made available in the schematic.
+
+Example:
+
+```javascript
+{
+    "components": {
+        "batting": [
+            "g", "pa", "ab", "h", "1b", "2b", "3b", "hr",
+            "bb", "ibb", "r", "rbi", "sb", "cs", "hbp",
+            "obp", "slg", "so", "avg", "sh", "sf"
+        ],
+
+        "pitching": [
+            "g", "gs", "ip", "w", "l", "qs",
+            "sv", "hld", "so", "h", "bb", "ibb",
+            "er", "era", "whip", "hra", "hbp",
+            "k_9", "bb_9", "k_bb"
+        ]
+    }
+}
+```
+
+(The example above is included in this repo as `config.json-example`.)
 
 ## Schema generation
 
-## Converting with a schematic
+Once you've defined fields, you can generate a translation schematic.
+To do so, use `generate-schema`.
 
-## Output formatting
+### Example usage
 
-CSV output columns are grouped into sections:
+```shell
+$ generate-schema -c /path/to/config.json /path/to/output
+```
 
-1. Player data (name, age, handedness, team, league, roles)
-2. Remote identification (player IDs across MLBAM, Baseball Prospectus, Fangraphs, etc)
-3. Component projections (defined by the user)
+## Translating projections
 
-The ultimate number of columns is determined by the number of components.
+After defining a translation schematic, it's time to put it to use.
+To translate projections, use `process-projections`.
+
+### Example usage
+
+```shell
+$ process-projections -c /path/to/config.json       \
+                      -t batting                    \
+                      -s /path/to/schematic.json    \
+                      -i /path/to/projection.csv    \
+                      /path/to/output.csv
+```
