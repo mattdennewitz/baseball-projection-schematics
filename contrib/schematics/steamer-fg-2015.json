@@ -1,0 +1,109 @@
+{
+    "batting": {
+        "components": {
+            "1b": null,
+            "2b": "2B",
+            "3b": "3B",
+            "ab": "AB",
+            "avg": "AVG",
+            "bb": "BB",
+            "cs": "CS",
+            "g": null,
+            "h": "H",
+            "hbp": "HBP",
+            "hr": "HR",
+            "ibb": null,
+            "obp": "OBP",
+            "pa": "PA",
+            "r": "R",
+            "rbi": "RBI",
+            "sb": "SB",
+            "sf": null,
+            "sh": null,
+            "slg": "SLG",
+            "so": "SO"
+        },
+        "player": {
+            "age": null,
+            "hands": {
+                "bats": null,
+                "throws": null
+            },
+            "ids": {
+                "key_bbpro": null,
+                "key_bbref": null,
+                "key_bbref_minors": null,
+                "key_cbs": null,
+                "key_davenport": null,
+                "key_espn": null,
+                "key_fangraphs": "playerid",
+                "key_fangraphs_minors": "playerid",
+                "key_mlbam": null,
+                "key_nfbc": null,
+                "key_retro": null,
+                "key_yahoo": null
+            },
+            "league": null,
+            "name": {
+                "first": null,
+                "full": "Name",
+                "last": null
+            },
+            "roles": null,
+            "team_name": null
+        }
+    },
+    "pitching": {
+        "components": {
+            "bb": "BB",
+            "bb_9": "BB/9",
+            "er": "ER",
+            "era": "ERA",
+            "g": "G",
+            "gs": "GS",
+            "h": "H",
+            "hbp": null,
+            "hld": null,
+            "hra": "HR",
+            "ibb": null,
+            "ip": "IP",
+            "k_9": "K/9",
+            "k_bb": null,
+            "l": "L",
+            "qs": null,
+            "so": "SO",
+            "sv": "SV",
+            "w": "W",
+            "whip": "WHIP"
+        },
+        "player": {
+            "age": null,
+            "hands": {
+                "bats": null,
+                "throws": null
+            },
+            "ids": {
+                "key_bbpro": null,
+                "key_bbref": null,
+                "key_bbref_minors": null,
+                "key_cbs": null,
+                "key_davenport": null,
+                "key_espn": null,
+                "key_fangraphs": "playerid",
+                "key_fangraphs_minors": "playerid",
+                "key_mlbam": null,
+                "key_nfbc": null,
+                "key_retro": null,
+                "key_yahoo": null
+            },
+            "league": null,
+            "name": {
+                "first": null,
+                "full": "Name",
+                "last": null
+            },
+            "roles": null,
+            "team_name": null
+        }
+    }
+}

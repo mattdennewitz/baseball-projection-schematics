@@ -1,0 +1,109 @@
+{
+    "batting": {
+        "components": {
+            "1b": "1B",
+            "2b": "2B",
+            "3b": "3B",
+            "ab": "AB",
+            "avg": "AVG",
+            "bb": "BB",
+            "cs": "CS",
+            "g": null,
+            "h": "H",
+            "hbp": "HBP",
+            "hr": "HR",
+            "ibb": null,
+            "obp": "OBP",
+            "pa": "PA",
+            "r": "R",
+            "rbi": "RBI",
+            "sb": "SB",
+            "sf": "SF",
+            "sh": "SH",
+            "slg": "SLG",
+            "so": "SO"
+        },
+        "player": {
+            "age": "AGE",
+            "hands": {
+                "bats": "BATS",
+                "throws": "THROWS"
+            },
+            "ids": {
+                "key_bbpro": "BPID",
+                "key_bbref": null,
+                "key_bbref_minors": null,
+                "key_cbs": null,
+                "key_davenport": null,
+                "key_espn": null,
+                "key_fangraphs": null,
+                "key_fangraphs_minors": null,
+                "key_mlbam": "MLBCODE",
+                "key_nfbc": null,
+                "key_retro": null,
+                "key_yahoo": null
+            },
+            "league": "LG",
+            "name": {
+                "first": "FIRSTNAME",
+                "full": null,
+                "last": "LASTNAME"
+            },
+            "roles": ["POS"],
+            "team_name": "TEAM"
+        }
+    },
+    "pitching": {
+        "components": {
+            "bb": "BB",
+            "bb_9": "BB9",
+            "er": null,
+            "era": "ERA",
+            "g": "G",
+            "gs": "GS",
+            "h": "H",
+            "hbp": "HBP",
+            "hld": null,
+            "hra": "HR",
+            "ibb": null,
+            "ip": "IP",
+            "k_9": "SO9",
+            "k_bb": null,
+            "l": "L",
+            "qs": "QS",
+            "so": "SO",
+            "sv": "SV",
+            "w": "W",
+            "whip": "WHIP"
+        },
+        "player": {
+            "age": "AGE",
+            "hands": {
+                "bats": "BATS",
+                "throws": "THROWS"
+            },
+            "ids": {
+                "key_bbpro": "BPID",
+                "key_bbref": null,
+                "key_bbref_minors": null,
+                "key_cbs": null,
+                "key_davenport": null,
+                "key_espn": null,
+                "key_fangraphs": null,
+                "key_fangraphs_minors": null,
+                "key_mlbam": "MLBCODE",
+                "key_nfbc": null,
+                "key_retro": null,
+                "key_yahoo": null
+            },
+            "league": "LG",
+            "name": {
+                "first": "FIRSTNAME",
+                "full": null,
+                "last": "LASTNAME"
+            },
+            "roles": null,
+            "team_name": "TEAM"
+        }
+    }
+}
