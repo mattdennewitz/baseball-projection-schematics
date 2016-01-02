@@ -13,36 +13,42 @@ import json
 
 import schematics
 
-from projnorm import settings, configreader, template
+from projnorm import settings, template
 
+
+QUIET = 0
+LOUD = 1
 
 @click.command()
-@click.option('-c', '--config', 'config_fp', type=click.File('rb'),
-              required=True, help='Path to schematic configuration')
-@click.option('--sort-keys/--no-sort-keys', default=True,
-              help='Sort JSON keys? (Recommended)')
-@click.option('-i', '--indent', type=click.INT, default=4,
-              help='JSON output indentation level')
+@click.option('-v', '--verbosity', type=click.INT, default=0)
 @click.argument('destination', type=click.File('w'), required=True)
-def generate_schematic(config_fp, destination, sort_keys, indent):
+def generate_schematic(verbosity, destination):
     """Generates a schema from given template and configuration.
     """
 
-    config = configreader.read_from_file(config_fp)
+    config = settings.DEFAULT_CONFIG
+
+    if verbosity > QUIET:
+        click.echo('Batting categories: {}'.format(
+                   ', '.join(config['components']['batting'])))
+        click.echo('Pitching categories: {}'.format(
+                   ', '.join(config['components']['pitching'])))
+
+    tpl = template.get_template()
 
     # render schematic template
-    tpl = template.get_template()
     rendered = tpl.render({
         'config': config,
         'id_systems': settings.ID_SYSTEMS,
     })
 
-    # re-read json data for cleanup,
-    # then write to final destination
-    json.dump(json.loads(rendered),
-              destination,
-              indent=indent,
-              sort_keys=sort_keys)
+    rendered = rendered.strip()
+
+    # write output
+    if verbosity > QUIET:
+        click.echo('Rendering schematic to {}'.format(destination.name))
+
+    json.dump(json.loads(rendered), destination, indent=2, sort_keys=True)
 
 
 if __name__ == '__main__':
