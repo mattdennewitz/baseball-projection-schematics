@@ -25,14 +25,14 @@ Translation is accomplished by defining a map (here called a schematic)
 between column names in a projection spreadsheet and a new, normalized schema.
 
 Check out an example schematic here:
-[PECOTA Schematic](https://github.com/mattdennewitz/projection-normalization/blob/develop/contrib/schematics/pecota-2015.json).
+[PECOTA Schematic](https://github.com/mattdennewitz/projection-normalization/blob/develop/contrib/schematics/season-2015/pecota.json).
 
 ## Configuration
 
-Before a schematic can be generated, the schematic needs to know
-which components it's on the hook for mapping. These components
-(and, implicitly, the order of their output when used in processing)
-are then made available in the schematic.
+Before a schematic can be created, the app needs to know
+which components it's on the hook for mapping.
+
+Create a JSON file called `config.json` with the following structure:
 
 Example:
 
@@ -59,26 +59,31 @@ Example:
 
 ## Schema generation
 
-Once you've defined fields, you can generate a translation schematic.
-To do so, use `generate-schema`.
+Schemas map fields with expectedly varying names to canonical representations,
+e.g., mapping "AGE" from one system and "playerAge" from another to
+simply "age" in your output.
+
+Use `bb-generate-schema` to generate a empty schematics, and then
+map field names from CSV headers to the fields in the schematic.
 
 ### Example usage
 
 ```shell
-$ generate-schema -c /path/to/config.json /path/to/output
+$ bb-generate-schema -c /path/to/config.json /path/to/output
 ```
 
 ## Translating projections
 
 After defining a translation schematic, it's time to put it to use.
-To translate projections, use `process-projections`.
-
-### Example usage
+To translate projections, use `bb-process-projections`.
 
 ```shell
-$ process-projections -c /path/to/config.json       \
-                      -t batting                    \
-                      -s /path/to/schematic.json    \
-                      -i /path/to/projection.csv    \
-                      /path/to/output.csv
+$ bb-process-projections        \
+    -c /path/to/config.json     \
+    -t batting                  \
+    -s /path/to/schematic.json  \
+    -i /path/to/projection.csv  \
+    /path/to/output.csv
 ```
+
+This will output the normalized projection in CSV format.
