@@ -115,5 +115,6 @@
       "roles": ["helper_steamer_pitcher_roles", "start_IP", "relief_IP"], 
       "team_name": "DBTeamid"
     }
-  }
+  },
+  "system": "steamer"
 }

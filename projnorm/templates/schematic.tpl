@@ -1,4 +1,6 @@
 {
+    "system": null,
+
     "batting": {
         {% with components=config.components.batting %}
             {% include "player.tpl" with context %}

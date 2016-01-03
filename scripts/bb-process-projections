@@ -139,7 +139,7 @@ def process_projections(schematic_fp, projection_type, input_fp,
 
     # start off with basic player information
     columns = [
-        'name_last', 'name_first', 'name_full', 'name_lcf',
+        'system', 'name_last', 'name_first', 'name_full', 'name_lcf',
         'age', 'bats', 'throws', 'league', 'roles'
     ]
 
@@ -153,11 +153,15 @@ def process_projections(schematic_fp, projection_type, input_fp,
     writer.writerow(columns)
 
     for line in projections:
-        writer.writerow([
+        line['system'] = schematic.system
+
+        row = [
             clean_text(line[key])
             for key
             in columns
-        ])
+        ]
+
+        writer.writerow(row)
 
 
 if __name__ == '__main__':
