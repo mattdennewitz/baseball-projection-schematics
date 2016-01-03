@@ -1,0 +1,119 @@
+{
+  "batting": {
+    "components": {
+      "_1b": "1B", 
+      "_2b": "2B", 
+      "_3b": "3B", 
+      "ab": "AB", 
+      "avg": "AVG", 
+      "babip": "BABIP", 
+      "bb": "NIBB", 
+      "cs": "CS", 
+      "g": "G", 
+      "h": "H", 
+      "hbp": "HBP", 
+      "hr": "HR", 
+      "ibb": "IBB", 
+      "obp": "OBP", 
+      "pa": "PA", 
+      "r": "R", 
+      "rbi": "RBI", 
+      "sb": "SB", 
+      "sf": "SF", 
+      "sh": "SH", 
+      "slg": "SLG", 
+      "so": "K"
+    }, 
+    "player": {
+      "age": "age", 
+      "hands": {
+        "bats": "bats", 
+        "throws": null
+      }, 
+      "ids": {
+        "key_bbpro": null, 
+        "key_bbref": null, 
+        "key_bbref_minors": null, 
+        "key_cbs": null, 
+        "key_davenport": null, 
+        "key_espn": null, 
+        "key_fangraphs": null, 
+        "key_fangraphs_minors": null, 
+        "key_mlbam": "mlbamid", 
+        "key_nfbc": null, 
+        "key_retro": null, 
+        "key_yahoo": null
+      }, 
+      "league": null, 
+      "name_last": "lastname",
+      "name_first": "firstname", 
+      "name_full": null, 
+      "name_lcf": null,
+      "roles": ["position"], 
+      "team_name": "Team"
+    }
+  }, 
+  "pitching": {
+    "components": {
+      "babip": "BABIP", 
+      "bb": "BB", 
+      "bb_9": "BB9", 
+      "cg": null, 
+      "er": "ER", 
+      "era": "ERA", 
+      "fb": "FB", 
+      "g": "G", 
+      "gb": "GB", 
+      "gs": "GS", 
+      "h": "H", 
+      "hbp": "HBP", 
+      "hld": "HLD", 
+      "hr_9": "HR9", 
+      "hr_fb": "HR/FB", 
+      "hra": "HR", 
+      "ibb": null, 
+      "ip": "IP", 
+      "k_9": "K9", 
+      "k_bb": null, 
+      "l": "L", 
+      "ld": "LD", 
+      "lob_pct": "LOB%", 
+      "qs": "QS", 
+      "ra": "RA", 
+      "sho": null, 
+      "so": "K", 
+      "sv": "SV", 
+      "tbf": "TBF", 
+      "w": "W", 
+      "whip": "WHIP"
+    }, 
+    "player": {
+      "age": "age", 
+      "hands": {
+        "bats": null, 
+        "throws": "Throws"
+      }, 
+      "ids": {
+        "key_bbpro": null, 
+        "key_bbref": null, 
+        "key_bbref_minors": null, 
+        "key_cbs": null, 
+        "key_davenport": null, 
+        "key_espn": null, 
+        "key_fangraphs": null, 
+        "key_fangraphs_minors": null, 
+        "key_mlbam": "mlbamid", 
+        "key_nfbc": null, 
+        "key_retro": null, 
+        "key_yahoo": null
+      }, 
+      "league": "League", 
+      "name_last": "lastname",
+      "name_first": "firstname", 
+      "name_full": null, 
+      "name_lcf": null,
+      "roles": ["helper_steamer_pitcher_roles", "start_IP", "relief_IP"], 
+      "team_name": "DBTeamid"
+    }
+  }
+}

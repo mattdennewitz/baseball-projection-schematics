@@ -7,11 +7,10 @@
     "team_name": null,
     "league": null,
     "roles": null,
-    "name": {
-        "first": null,
-        "last": null,
-        "full": null
-    },
+    "name_last": null,
+    "name_first": null,
+    "name_full": null,
+    "name_lcf": null,
     "age": null,
     "hands": {
         "bats": null,

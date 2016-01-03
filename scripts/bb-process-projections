@@ -7,6 +7,7 @@ import optparse
 import os
 import pprint
 import re
+import string
 import sys
 
 import click
@@ -15,7 +16,7 @@ from schematics.exceptions import ModelValidationError
 
 import unicodecsv as csv
 
-from projnorm import settings
+from projnorm import helpers, settings
 from projnorm.models import ProjectionSchematic
 
 
@@ -40,6 +41,14 @@ def clean_value(value, default=None):
     return float(value)
 
 
+def call_helper(helper_name, *args):
+    helper_fn = getattr(helpers, helper_name, None)
+    if helper_fn is None:
+        raise click.BadParameter('Helper {} does not exist!'
+                                 .format(helper_name))
+    return helper_fn(*args)
+
+
 def process(schematic, data_fp):
     "Processes a batting or pitching projection"
 
@@ -49,27 +58,35 @@ def process(schematic, data_fp):
     for row in data:
         projected_line = {}
 
+        name_last, name_first, name_full, name_lfc = None, None, None, None
+
         # build player information
-        if schematic.player.name.full is not None:
-            player_name = row[schematic.player.name.full]
+        if schematic.player.name_full is not None:
+            name_full = PlayerName(full=row[schematic.player.name_full])
         else:
-            player_name = '%s, %s' % (row[schematic.player.name.last],
-                                      row[schematic.player.name.first])
+            name_last = row[schematic.player.name_last]
+            name_first = row[schematic.player.name_first]
+            name_full = '{} {}'.format(name_first, name_last)
+            name_lfc = '{}, {}'.format(name_last, name_first)
 
         # get player roles, flatten into comma-separated string
-        roles = []
         if schematic.player.roles:
-            for key in schematic.player.roles:
-                roles_ = row[key]
-                if roles_:
-                    split_roles = roles_.split(',')
-                    for split_role in split_roles:
-                        if not split_role in roles:
-                            roles.append(split_role)
+            # peek at [0] to feel out of this array of roles
+            # is calling for a helper
+            if schematic.player.roles[0].startswith('helper_'):
+                args = [row[kw] for kw in schematic.player.roles[1:]]
+                roles = call_helper(schematic.player.roles[0], *args)
+            else:
+                roles = [row[key] for key in schematic.player.roles]
+
+            roles = map(string.upper, roles)
 
         # add player information
         projected_line.update(
-            name = player_name,
+            name_last = name_last,
+            name_first = name_first,
+            name_full = name_full,
+            name_lcf = name_lfc,
             age = row.get(schematic.player.age),
             bats = row.get(schematic.player.hands.bats),
             throws = row.get(schematic.player.hands.throws),
@@ -91,6 +108,10 @@ def process(schematic, data_fp):
             value = None
             if column_name is not None:
                 value = row.get(column_name)
+
+                if isinstance(value, list) and value[0].startswith('helper_'):
+                    value = call_helper(value[0], *value[1:])
+
             projected_line[key] = value
 
         yield projected_line
@@ -117,7 +138,11 @@ def process_projections(schematic_fp, projection_type, input_fp,
     projections = process(schematic[projection_type], input_fp)
 
     # start off with basic player information
-    columns = ['name', 'age', 'bats', 'throws', 'league', 'roles']
+    columns = [
+        'name_last', 'name_first', 'name_full', 'name_lcf',
+        'age', 'bats', 'throws', 'league', 'roles'
+    ]
+
     # add player id keys
     columns.extend( sorted(schematic[projection_type].player.ids.keys()) )
     # add components

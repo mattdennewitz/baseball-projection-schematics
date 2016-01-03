@@ -26,12 +26,6 @@ class Component(models.Model):
     key = types.StringType()
 
 
-class PlayerName(models.Model):
-    first = types.StringType()
-    last = types.StringType()
-    full = types.StringType()
-
-
 class PlayerId(models.Model):
     key_mlbam = types.StringType()
     key_retro = types.StringType()
@@ -55,7 +49,10 @@ class PlayerHands(models.Model):
 class Player(models.Model):
     ids = types.compound.ModelType(PlayerId)
     team_name = types.StringType()
-    name = types.compound.ModelType(PlayerName)
+    name_last = types.StringType()
+    name_first = types.StringType()
+    name_full = types.StringType()
+    name_lcf = types.StringType()
     age = types.StringType()
     league = types.StringType()
     roles = types.compound.ListType(types.StringType())
