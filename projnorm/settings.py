@@ -42,6 +42,7 @@ DEFAULT_CONFIG = {
             'avg',
             'sh',
             'sf',
+            'babip',
         ),
 
         'pitching': (
@@ -62,11 +63,20 @@ DEFAULT_CONFIG = {
             'whip',
             'hra',
             'hbp',
+            'gb',
+            'fb',
+            'ld',
             'k_9',
             'bb_9',
             'k_bb',
+            'hr_9',
+            'hr_fb',
+            'lob_pct',
             'cg',
             'sho',
+            'tbf',
+            'babip',
+            'ra',
         )
     }
 }
