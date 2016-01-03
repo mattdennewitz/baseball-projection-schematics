@@ -3,7 +3,7 @@
 Baseball projection spreadsheets come (Steamer, PECOTA, GURU, etc)
 in all shapes and sizes. This app allows users translate
 distribution-specific data (e.g., component names ("mPA", "DBL", "3B"),
-roles, names) to a normalized, uniform schema.
+roles, names) to a normalized schema.
 
 ## Installation
 
@@ -23,19 +23,18 @@ $ pip install /path/to/this/repo/
 
 You may find the projections here:
 
-- Steamer - scraped from [Fangraphs](http://www.fangraphs.com/projections.aspx?pos=all&stats=pit&type=steamer&team=0&lg=all&players=0&sort=20%2cd)
+- :free: Steamer - scraped from [Fangraphs](http://www.fangraphs.com/projections.aspx?pos=all&stats=pit&type=steamer&team=0&lg=all&players=0&sort=20%2cd)
     using [this importer](https://github.com/mattdennewitz/mlb-fangraphs-steamer-importer).
-    (:free:)
-- [Guru](http://baseballguru.com/bbinside4.html) (:free:)
-- ZiPS - coming soon (:free:)
-- CAIRO - coming soon (:free:)
-- PECOTA - coming soon (:moneybag:)
-- Davenport - coming soon (:free:)
+- :free: [Guru](http://baseballguru.com/bbinside4.html)
+- :free: ZiPS - coming soon
+- :free: CAIRO - coming soon
+- :moneybag: PECOTA - coming soon 
+- :free: Davenport - coming soon
 
 ## Schematics
 
 Translation is accomplished by defining a map (here called a schematic)
-between column names in a projection spreadsheet and a new, normalized schema.
+between column names in a projection spreadsheet and an ideal, canonical schema.
 
 Check out an example schematic here:
 [GURU Schematic](https://github.com/mattdennewitz/baseball-projection-schematics/blob/develop/contrib/schematics/season-2016/guru.json).
