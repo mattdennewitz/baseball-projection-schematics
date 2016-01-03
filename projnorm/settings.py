@@ -41,7 +41,7 @@ DEFAULT_CONFIG = {
             'so',
             'avg',
             'sh',
-            'sf'
+            'sf',
         ),
 
         'pitching': (
@@ -65,6 +65,8 @@ DEFAULT_CONFIG = {
             'k_9',
             'bb_9',
             'k_bb',
+            'cg',
+            'sho',
         )
     }
 }
