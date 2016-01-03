@@ -68,5 +68,6 @@ class ProjectionLine(models.Model):
 
 class ProjectionSchematic(models.Model):
     system = types.StringType()
+    season = types.IntType()
     batting = types.compound.ModelType(ProjectionLine)
     pitching = types.compound.ModelType(ProjectionLine)

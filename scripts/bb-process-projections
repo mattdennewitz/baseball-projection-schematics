@@ -26,6 +26,8 @@ LOUD = 1
 space_re = re.compile(r'\s\s+')
 
 def clean_text(value):
+    if not isinstance(value, basestring):
+        return value
     if value:
         return space_re.sub(' ', value).strip()
     return value
@@ -139,7 +141,8 @@ def process_projections(schematic_fp, projection_type, input_fp,
 
     # start off with basic player information
     columns = [
-        'system', 'name_last', 'name_first', 'name_full', 'name_lcf',
+        'system', 'season',
+        'name_last', 'name_first', 'name_full', 'name_lcf',
         'age', 'bats', 'throws', 'league', 'roles'
     ]
 
@@ -154,6 +157,7 @@ def process_projections(schematic_fp, projection_type, input_fp,
 
     for line in projections:
         line['system'] = schematic.system
+        line['season'] = schematic.season
 
         row = [
             clean_text(line[key])

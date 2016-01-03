@@ -1,5 +1,6 @@
 {
     "system": null,
+    "season": null,
 
     "batting": {
         {% with components=config.components.batting %}
