@@ -39,7 +39,7 @@ map field names from CSV headers to the fields in the schematic.
 ### Example usage
 
 ```shell
-$ bb-generate-schema -c /path/to/config.json /path/to/output
+$ bb-generate-schema /path/to/output
 ```
 
 ## Translating projections
@@ -49,7 +49,6 @@ To translate projections, use `bb-process-projections`.
 
 ```shell
 $ bb-process-projections        \
-    -c /path/to/config.json     \
     -t batting                  \
     -s /path/to/schematic.json  \
     -i /path/to/projection.csv  \

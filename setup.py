@@ -11,7 +11,7 @@ pip_reqs = [unicode(obj.req) for obj in parse_requirements(reqs_txt)]
 
 setup(
     name = 'baseball-projection-schematics',
-    version = '0.1.0',
+    version = '0.2.0',
     description = 'Translates projection data into a unified schema',
     author = 'Matt Dennewitz',
     author_email = 'mattdennewitz@gmail.com',
