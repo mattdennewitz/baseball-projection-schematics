@@ -38,7 +38,7 @@ Translation is accomplished by defining a map (here called a schematic)
 between column names in a projection spreadsheet and a new, normalized schema.
 
 Check out an example schematic here:
-[PECOTA Schematic](https://github.com/mattdennewitz/projection-normalization/blob/develop/contrib/schematics/season-2015/pecota.json).
+[GURU Schematic](https://github.com/mattdennewitz/baseball-projection-schematics/blob/develop/contrib/schematics/season-2016/guru.json).
 
 ## Schema generation
 
