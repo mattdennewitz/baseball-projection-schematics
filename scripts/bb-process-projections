@@ -15,9 +15,12 @@ from schematics.exceptions import ModelValidationError
 
 import unicodecsv as csv
 
-from projnorm import configreader
+from projnorm import settings
 from projnorm.models import ProjectionSchematic
 
+
+QUIET = 0
+LOUD = 1
 
 space_re = re.compile(r'\s\s+')
 
@@ -29,7 +32,7 @@ def clean_text(value):
 
 def clean_value(value, default=None):
     if not value:
-        if default:
+        if default is not None:
             return default
         return value
     if isinstance(value, basestring):
@@ -100,13 +103,12 @@ def process(schematic, data_fp):
               type=click.Choice(('batting', 'pitching', )), required=True)
 @click.option('-i', '--input', 'input_fp', type=click.File('rb'),
               required=True)
-@click.option('-c', '--config', 'config_fp', type=click.File('rb'),
-              required=True)
+@click.option('-v', '--verbosity', type=click.INT, default=0)
 @click.argument('destination', type=click.File('w'), required=True)
 def process_projections(schematic_fp, projection_type, input_fp,
-                        config_fp, destination):
+                        verbosity, destination):
     # read config
-    config = configreader.read_from_file(config_fp)
+    config = settings.DEFAULT_CONFIG
 
     # load schematic
     schematic = ProjectionSchematic(json.load(schematic_fp))
@@ -119,7 +121,7 @@ def process_projections(schematic_fp, projection_type, input_fp,
     # add player id keys
     columns.extend( sorted(schematic[projection_type].player.ids.keys()) )
     # add components
-    columns.extend( config.components[projection_type] )
+    columns.extend( config['components'][projection_type] )
 
     # write header row and re-formatted projections
     writer = csv.writer(destination)
