@@ -19,6 +19,19 @@ or clone the repo and install with:
 $ pip install /path/to/this/repo/
 ```
 
+## Finding projections
+
+You may find the projections here:
+
+- Steamer - scraped from [Fangraphs](http://www.fangraphs.com/projections.aspx?pos=all&stats=pit&type=steamer&team=0&lg=all&players=0&sort=20%2cd)
+    using [this importer](https://github.com/mattdennewitz/mlb-fangraphs-steamer-importer).
+    (:free:)
+- [Guru](http://baseballguru.com/bbinside4.html) (:free:)
+- ZiPS - coming soon (:free:)
+- CAIRO - coming soon (:free:)
+- PECOTA - coming soon (:moneybag:)
+- Davenport - coming soon (:free:)
+
 ## Schematics
 
 Translation is accomplished by defining a map (here called a schematic)
