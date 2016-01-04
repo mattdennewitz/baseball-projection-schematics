@@ -92,6 +92,7 @@ def process(schematic, data_fp):
             age = row.get(schematic.player.age),
             bats = row.get(schematic.player.hands.bats),
             throws = row.get(schematic.player.hands.throws),
+            team_name = row.get(schematic.player.team_name),
             league = row.get(schematic.player.league),
             roles = ','.join(roles)
         )
@@ -143,7 +144,7 @@ def process_projections(schematic_fp, projection_type, input_fp,
     columns = [
         'system', 'season',
         'name_last', 'name_first', 'name_full', 'name_lcf',
-        'age', 'bats', 'throws', 'league', 'roles'
+        'age', 'bats', 'throws', 'team_name', 'league', 'roles'
     ]
 
     # add player id keys
